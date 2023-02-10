@@ -4,5 +4,5 @@ const Loaders = require('./loaders/index')
 
 Loaders.start()
 
-app.listen(3333, () => console.log('Está funcionandooo'));
+app.listen(5000, () => console.log('Está funcionandooo'));
 
