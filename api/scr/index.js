@@ -1,4 +1,8 @@
 const app = require('./app'); 
+const Loaders = require('./loaders/index')
 
-app.listen(3333, () => console.log('Está funcionandoooooooooo'));
+
+Loaders.start()
+
+app.listen(3333, () => console.log('Está funcionandooo'));
 
