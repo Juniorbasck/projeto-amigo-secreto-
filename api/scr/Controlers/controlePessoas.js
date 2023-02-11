@@ -7,12 +7,27 @@ class constrolePessoas{
         return res.status(200).json(criarPessoas);
     }
 
-    async listar(){
+    async listar(req, res){
+        const pessoas = await productModel.find();
 
+        return res.status(200).json(pessoas);
     }
 
-    async mostrar(){
+    async mostrar(req, res){
+        try{
+            const { id } = req.params; 
+        
+            const pessoas = await productModel.findById(id);
 
+            if(!pessoas){
+                return res.status(404).json({message: "pessoa não achada"})
+            }
+
+            return res.status(200).json(pessoas); 
+
+        } catch (error){
+            return res.status(404).json({message: "ESTÁ ERRADO"})
+        }
     }
 
     async update(){
