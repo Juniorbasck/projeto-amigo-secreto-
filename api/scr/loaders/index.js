@@ -6,4 +6,5 @@ class loaders{
     }
 }
 
+
 module.exports = new loaders(); 
