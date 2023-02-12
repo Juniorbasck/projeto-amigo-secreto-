@@ -38,6 +38,26 @@ export const Td = styled.td`
   }
 `;
 
+const Grid = ({ users, setUsers, setOnEdit }) => {
+    const handleEdit = (item) => {
+      setOnEdit(item);
+};
+
+
+const handleDelete = async (id) => {
+    await axios
+      .delete("http://localhost:5000/" + id)
+      .then(({ data }) => {
+        const newArray = users.filter((user) => user.id !== id);
+
+        setUsers(newArray);
+        toast.success(data);
+      })
+      .catch(({ data }) => toast.error(data));
+
+    setOnEdit(null);
+  };
+
 const Grid = ({ users }) => {
    
     return (
@@ -56,10 +76,10 @@ const Grid = ({ users }) => {
                         <td width="30%">{item.nome}</td>
                         <td width="30%">{item.email}</td>
                         <td alignCenter width="5%">
-                            <FaEdit/>
+                            <FaEdit onAbort={() => handleEdit(item)}/>
                         </td>
                         <Td alignCenter width="5%">
-                            <FaEdit/>
+                            <FaEdit onClick={()  => handleDelete(item.id)}/>
                         </Td>
                      </Tr>
                 ))}

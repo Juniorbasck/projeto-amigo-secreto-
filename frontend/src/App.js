@@ -44,8 +44,8 @@ function App() {
 
           </Container>
             <title>CADASTRO</title>
-            <Form/>
-            <Grid/>
+            <Form onEdit={onEdit} setOnEdit={setOnEdit} getUsers={setOnEdit}/>
+            <Grid users={users} setUsers={setUsers} setOnEdit={setOnEdit}/>
           <toastContainer autoClose={3000} position={tost.POSITION.BOTTOM_LEFT}/>
           <GlobalStyle/>
         </>
