@@ -3,9 +3,15 @@ const productModel = require ('../Models/productModel');
 class constrolePessoas{
     async cadastro(req, res){
         
+        const emailjaExiste = await productModel.findOne({ email: email });
+
+        if(emailjaExiste){
+            return res.status(400).json({message: "email jáa cadastrado"})
+        }
+
         const {nome, email} = req.body;
         if(!nome || email){
-            return res.status(400).json({message: "tem que digital todo os camps"})
+            return res.status(400).json({message: "tem que preencher todo os campos"})
         }
         const criarPessoas = await productModel.create(req.body);
 
