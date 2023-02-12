@@ -12,5 +12,7 @@ routes.get('/health', (req, res) => {
 routes.post('/pessoas', constrolePessoas.cadastro) 
 routes.get('/pessoas', constrolePessoas.listar) 
 routes.get('/pessoas/:id', constrolePessoas.mostrar) 
+routes.put('/pessoas/:id', constrolePessoas.update) 
+routes.delete('/pessoas/:id', constrolePessoas.excluir) 
 
 module.exports = routes; 

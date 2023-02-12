@@ -2,6 +2,11 @@ const productModel = require ('../Models/productModel');
 
 class constrolePessoas{
     async cadastro(req, res){
+        
+        const {nome, email} = req.body;
+        if(!nome || email){
+            return res.status(400).json({message: "tem que digital todo os camps"})
+        }
         const criarPessoas = await productModel.create(req.body);
 
         return res.status(200).json(criarPessoas);
@@ -30,12 +35,41 @@ class constrolePessoas{
         }
     }
 
-    async update(){
+    async update(req, res){
+        try {
+            const { id } = req.params;
+
+            await productModel.findByIdAndUpdate(id, req.body);        
+
+            res.status(200).json({message: "produto editado"});
+
+        } catch (error) {
+
+            return res.status(404).json({message: "falha em editar"});
+    
+        }
 
     }
 
-    async excluir(){
+    async excluir(req, res){
         
+        try {
+            const { id } = req.params;
+
+            const pessosDeletar = await productModel.findByIdAndRemove(id);
+
+            if(!pessosDeletar){
+                return res.status(404).json({message: "pessoa não encontrada"}); 
+            }
+
+            return res.status(200).json({message: "pessoa removida"});
+
+
+        } catch (error) {
+
+            return res.status(404).json({message: "falha em deletar"});
+        }
+
     }
 }
 
