@@ -21,9 +21,9 @@ app.get('/send', (req,res) => {
     transporter.sendMail({
         from: user,
         to: "pedro@gmail.com",
-        replyTo: "adilson.juniorcomunicacao@gmail.com"
-        Subject: "Ola, você ganhou o amigo socreto"
-        Text: "Ola, você ganhou o amigo socreto"
+        replyTo: "adilson.juniorcomunicacao@gmail.com",
+        Subject: "Ola, você ganhou o amigo socreto",
+        Text: "Ola, você ganhou o amigo socreto",
     }).then(info=>{
         res.send(info)
     }).catch(error =>{
