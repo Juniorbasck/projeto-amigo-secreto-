@@ -17,6 +17,7 @@ const Table = styled.table`
 
 export const Thead = styled.thead``;
 
+export const Tbody = styled.tbody``;
 
 export const Tr = styled.tr``;
 
@@ -39,12 +40,11 @@ export const Td = styled.td`
 `;
 
 const Grid = ({ users, setUsers, setOnEdit }) => {
-    const handleEdit = (item) => {
-      setOnEdit(item);
-};
+  const handleEdit = (item) => {
+    setOnEdit(item);
+  };
 
-
-const handleDelete = async (id) => {
+  const handleDelete = async (id) => {
     await axios
       .delete("http://localhost:5000/" + id)
       .then(({ data }) => {
@@ -58,44 +58,32 @@ const handleDelete = async (id) => {
     setOnEdit(null);
   };
 
-const Grid = ({ users }) => {
-   
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {users.map((item, i) => (
-                   <Tr key={i}>
-                        <td width="30%">{item.nome}</td>
-                        <td width="30%">{item.email}</td>
-                        <td alignCenter width="5%">
-                            <FaEdit onAbort={() => handleEdit(item)}/>
-                        </td>
-                        <Td alignCenter width="5%">
-                            <FaEdit onClick={()  => handleDelete(item.id)}/>
-                        </Td>
-                     </Tr>
-                ))}
-            </tbody>
-        </table>
-    );
+  return (
+    <Table>
+      <Thead>
+        <Tr>
+          <Th>Nome</Th>
+          <Th>Email</Th>
+          <Th></Th>
+          <Th></Th>
+        </Tr>
+      </Thead>
+      <Tbody>
+        {users.map((item, i) => (
+          <Tr key={i}>
+            <Td width="30%">{item.nome}</Td>
+            <Td width="30%">{item.email}</Td>
+            <Td alignCenter width="5%">
+              <FaEdit onClick={() => handleEdit(item)} />
+            </Td>
+            <Td alignCenter width="5%">
+              <FaTrash onClick={() => handleDelete(item.id)} />
+            </Td>
+          </Tr>
+        ))}
+      </Tbody>
+    </Table>
+  );
 };
 
-export default Grid; 
-
-
-
-
-
-
-
-
-
-
+export default Grid;

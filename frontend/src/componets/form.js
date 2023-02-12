@@ -100,6 +100,7 @@ const Form = ({ onEdit }) => {
             </inputArea>
 
             <button type="submit">SALVAR</button>
+            <Button id="sortear" type="submi">SORTEAR</Button>
         </FormContainer>     
     );
 };
